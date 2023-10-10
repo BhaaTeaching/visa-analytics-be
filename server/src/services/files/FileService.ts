@@ -2,19 +2,15 @@ import * as xlsx from "xlsx";
 import * as fs from "fs";
 
 export const readeExcelFile = () => {
-  // Specify the path to your Excel file
   const filePath = "rep9.xlsx";
 
   const workbook: xlsx.WorkBook = xlsx.readFile(filePath);
 
-  // Choose the sheet you want to read (e.g., the first sheet)
   const sheetName: string = workbook.SheetNames[0];
   const worksheet: xlsx.WorkSheet = workbook.Sheets[sheetName];
 
-  // Convert the worksheet data to a JSON array
   const rawData: any[] = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
 
-  // Define an object to map column indices to custom headers
   const headers: { [key: string]: string } = {
     "0": "תאריך עסקה",
     "1": "שם בית עסק",
